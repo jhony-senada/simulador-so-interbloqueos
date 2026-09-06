@@ -78,6 +78,6 @@ class MóduloInterbloqueos:
     def visualizar_grafo(self, grafo):
         plt.figure(figsize=(6, 4))
         pos = nx.spring_layout(grafo)
-        nx.draw(grafo, pos, with_labels=True, node_color="lightblue", font_weight="bold", node_size=2000, arrows=True)
+        nx.draw(grafo, pos, with_labels=True, node_color="lightblue", font_weight="bold", node_size=1500, arrows=True)
         plt.title("Grafo de Asignación de Recursos (Interbloqueo)")
         plt.show()

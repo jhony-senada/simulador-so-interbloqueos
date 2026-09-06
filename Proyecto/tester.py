@@ -17,7 +17,7 @@ def ejecutar_prueba():
         return
         
     # Extraemos solo los IDs de los recursos exclusivos (están en la posición 1)[cite: 10]
-    diccionarios_recursos = datos_sistema[2]
+    diccionarios_recursos = datos_sistema[1]
     ids_exclusivos = [recurso['id'] for recurso in diccionarios_recursos]
     
     # 3. Inicializamos los procesos con sus acciones pendientes[cite: 10]

@@ -1,5 +1,7 @@
 import json
 
+# ! DEPRECATED 
+
 class Proceso:
     def __init__(self, pid, memoria, estado, rec_actuales, rec_necesarios, acciones):
         self.pid = pid
