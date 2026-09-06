@@ -1,0 +1,16 @@
+Descripción de la detección de interbloqueos
+El simulador emplea un modelo basado en Grafos de Asignación de Recursos utilizando la librería NetworkX.  
+Construye un grafo dirigido (DiGraph) trazando aristas desde los recursos retenidos hacia sus procesos dueños, y desde los procesos hacia los recursos que solicitan.  
+La lógica es estrictamente generalizable; extrae los PIDs de los objetos instanciados sin depender de nombres fijos o variables estáticas.  
+Al confirmar un ciclo, el módulo utiliza Matplotlib para generar una representación visual con los datos reales del escenario, permitiendo reconocer el interbloqueo visualmente.
+Análisis de las cuatro condiciones
+El simulador evalúa las condiciones programáticamente durante la ejecución, evitando respuestas escritas manualmente:  
+Exclusión mutua: El algoritmo verifica si los nodos del ciclo coinciden con la lista de recursos exclusivos declarados en la configuración del escenario.  
+Espera y retención: Inspecciona los procesos atrapados verificando que la longitud de sus recursos actuales y necesarios sea estrictamente mayor a cero.  
+No expropiación: Analiza la variable de entorno permite_expropiacion del archivo JSON para deducir si el sistema está operando bajo reglas de retención estricta.  
+Espera circular: Queda demostrada matemáticamente mediante el cruce de dependencias detectado por el motor de NetworkX.  
+Descripción de la estrategia de recuperaciónSe diseñó una heurística de costo variable para impedir que la situación continúe indefinidamente.  
+El sistema ordena a los procesos involucrados en el ciclo con base en la cantidad de recursos que acaparan para seleccionar a la víctima menos costosa.  
+Si la víctima posee un solo recurso, el sistema aplica una expropiación táctica: arrebata el recurso (rompiendo la condición de No expropiación) pero mantiene al proceso en estado de espera.  
+Si la víctima es un cuello de botella mayor, el sistema aplica terminación forzosa (rompiendo la Espera circular e impidiendo la Espera y retención).  
+Tras aplicar la estrategia, el motor actualiza inmediatamente los estados y libera los recursos, garantizando que la simulación pueda continuar de manera fluida.
