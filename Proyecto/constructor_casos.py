@@ -55,6 +55,6 @@ class ContrictorEscenarios:
             # lista_procesos.append(nuevo_proceso)
             accion_pendiente=Accion_pendiente(tipo,objetivo)
             lista_acciones.append(accion_pendiente)
-            proceso=Proceso(pid,lista_procesos,memoria,estado_i,recursos_actuales,recursos_necesita)
+            proceso=Proceso(pid,lista_acciones,memoria,estado_i,recursos_actuales,recursos_necesita)
             lista_procesos.append(proceso)
         return lista_procesos
