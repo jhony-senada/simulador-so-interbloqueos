@@ -67,7 +67,7 @@ class MotorSimulador:
                 # Si se quedó sin acciones, termina y LIBERA SUS RECURSOS
                 if len(p.acciones) == 0:
                     p.estado_inicial = "terminado_exitosamente"
-                    print(f" [✓] {p.pid} ha completado tareas y LIBERA sus recursos.")
+                    print(f" [:D] {p.pid} ha completado tareas y LIBERA sus recursos.")
                     recursos_a_liberar = p.recursos_actuales.copy()
                     p.recursos_actuales = []
                     # Devolvemos los recursos al sistema para que otros los usen
@@ -78,7 +78,7 @@ class MotorSimulador:
         
         while self.reloj < limite_ticks:
             self.reloj += 1
-            print(f"\n" + "="*40 + f"\n   [TICK DE RELOJ: {self.reloj}]\n" + "="*40)
+            print(f"\n" + "="*40 + f"\n   [TICK DE RELOJ: {self.reloj}]\n" + "="*40)  # noqa: F541
             
             # 1. Ejecutar procesos primero (para que los que no ocupan nada terminen y liberen)
             self.avanzar_procesos_activos()
@@ -88,11 +88,11 @@ class MotorSimulador:
             
             # 3. Recuperar y Reasignar si hay problemas
             if hay_bloqueo:
-                print(f"\n[!] ALERTA CRÍTICA: Interbloqueo detectado.")
+                print(f"\n[!] ALERTA CRÍTICA: Interbloqueo detectado.")  # noqa: F541
                 recursos_salvados = self.recuperador.resolver_interbloqueo(pids_afectados, self.procesos)
                 self.reasignar_recursos(recursos_salvados) 
             else:
-                print("\n[✓] Sistema estable.")
+                print("\n[:D]] Sistema estable.")
             
             self.mostrar_estado_sistema()
             time.sleep(1.5)
@@ -102,13 +102,13 @@ class MotorSimulador:
         esperando = [p.pid for p in self.procesos if p.estado_inicial == "esperando"]
         terminados = [p.pid for p in self.procesos if p.estado_inicial.startswith("terminado")]
         
-        print(f"\n--- ESTADO DEL SISTEMA ---")
+        print(f"\n--- ESTADO DEL SISTEMA ---")  # noqa: F541
         print(f" -> Activos: {activos if activos else 'Ninguno'}")
         print(f" -> Esperando: {esperando if esperando else 'Ninguno'}")
         print(f" -> Terminados: {terminados if terminados else 'Ninguno'}")
 
 
 if __name__ == "__main__":
-    motor = MotorSimulador("D:\Apuntes\Codigos\Proyecto\ejemplo2.json")
+    motor = MotorSimulador("D:\Apuntes\Codigos\Proyecto\ejemplo2.json")  # noqa: W605
     if motor.preparar_sistema():
         motor.ejecutar_paso_a_paso(limite_ticks=5)
