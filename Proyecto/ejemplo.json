@@ -1,0 +1,49 @@
+{
+    "nombre_escenario": "Escenario 3 - Prueba de Interbloqueo",
+    "configuracion": {
+        "memoria_total_mb": 1024
+    },
+    "recursos_exclusivos": [
+        {"id": "Impresora_1"},
+        {"id": "Disco_Externo"}
+    ],
+    "archivos_simulados": [
+        {"nombre": "reporte.txt", "estado": "disponible"}
+    ],
+    "procesos": [
+        {
+        "pid": "P1",
+        "memoria_requerida": 200,
+        "estado_inicial": "activo",
+        "recursos_actuales": ["Impresora_1"],
+        "recursos_necesarios": ["Disco_Externo"],
+        "acciones_pendientes": [
+            {
+            "tipo_accion": "solicitar_recurso", 
+            "objetivo": "Disco_Externo"
+            },
+            {
+            "tipo_accion": "escribir_archivo",
+            "objetivo": "reporte.txt"
+            }
+        ]
+        },
+        {
+        "pid": "P2",
+        "memoria_requerida": 300,
+        "estado_inicial": "activo",
+        "recursos_actuales": ["Disco_Externo"],
+        "recursos_necesarios": ["Impresora_1"],
+        "acciones_pendientes": [
+            {
+            "tipo_accion": "solicitar_recurso",
+            "objetivo": "Impresora_1"
+            },
+            {
+            "tipo_accion": "leer_archivo",
+            "objetivo": "reporte.txt"
+            }
+        ]
+        }
+    ]
+}
