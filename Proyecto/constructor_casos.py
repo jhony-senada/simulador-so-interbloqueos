@@ -1,5 +1,6 @@
 import json
 
+
 class Accion_pendiente:
     def __init__(self,tipo,objetivo):
         self.tipo=tipo
@@ -28,6 +29,17 @@ class ContrictorEscenarios:
             print("Error: El archivo de escenario tiene datos incompletos o invalidos... o no existe")
 
     def inicializar_sistema(self):
+        if not self.datos:
+            return None
+        recursos_totales_sistema = []
+        memoria=self.datos['configuracion']['memoria_total_mb']
+        recursos_exclusivos=self.datos['recursos_exclusivos']
+        permite_expropiar=self.datos['configuracion']['permite_expropiacion']
+        recursos_totales_sistema.append(memoria)
+        recursos_totales_sistema.append(recursos_exclusivos)
+        return recursos_totales_sistema,permite_expropiar
+
+    def inicializar_proceso(self):
         if not self.datos:
             return None
             

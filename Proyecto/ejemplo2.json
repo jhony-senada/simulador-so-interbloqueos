@@ -1,0 +1,92 @@
+{
+    "nombre_escenario": "Escenario 5 - Escenario Amplio con Interbloqueo",
+    "configuracion": {
+        "memoria_total_mb": 4096,
+        "permite_expropiacion": false
+    },
+    "recursos_exclusivos": [
+        {"id": "Impresora_1"},
+        {"id": "Impresora_2"},
+        {"id": "Disco_Externo"},
+        {"id": "GPU_1"},
+        {"id": "Escaner_1"},
+        {"id": "Plotter_1"},
+        {"id": "Base_Datos"}
+    ],
+    "archivos_simulados": [
+        {"nombre": "reporte.txt", "estado": "disponible"},
+        {"nombre": "datos.csv", "estado": "disponible"}
+    ],
+    "procesos": [
+        {
+            "pid": "P1",
+            "memoria_requerida": 200,
+            "estado_inicial": "activo",
+            "recursos_actuales": ["Impresora_1"],
+            "recursos_necesarios": ["Impresora_2"],
+            "acciones_pendientes": [
+                {"tipo_accion": "solicitar_recurso", "objetivo": "Impresora_2"}
+            ]
+        },
+        {
+            "pid": "P2",
+            "memoria_requerida": 500,
+            "estado_inicial": "activo",
+            "recursos_actuales": ["Disco_Externo"],
+            "recursos_necesarios": ["GPU_1"],
+            "acciones_pendientes": [
+                {"tipo_accion": "solicitar_recurso", "objetivo": "GPU_1"}
+            ]
+        },
+        {
+            "pid": "P3",
+            "memoria_requerida": 1024,
+            "estado_inicial": "activo",
+            "recursos_actuales": ["GPU_1"],
+            "recursos_necesarios": ["Escaner_1"],
+            "acciones_pendientes": [
+                {"tipo_accion": "solicitar_recurso", "objetivo": "Escaner_1"}
+            ]
+        },
+        {
+            "pid": "P4",
+            "memoria_requerida": 300,
+            "estado_inicial": "activo",
+            "recursos_actuales": ["Escaner_1"],
+            "recursos_necesarios": ["Plotter_1"],
+            "acciones_pendientes": [
+                {"tipo_accion": "solicitar_recurso", "objetivo": "Plotter_1"}
+            ]
+        },
+        {
+            "pid": "P5",
+            "memoria_requerida": 400,
+            "estado_inicial": "activo",
+            "recursos_actuales": ["Plotter_1"],
+            "recursos_necesarios": ["Disco_Externo"],
+            "acciones_pendientes": [
+                {"tipo_accion": "solicitar_recurso", "objetivo": "Disco_Externo"}
+            ]
+        },
+        {
+            "pid": "P6",
+            "memoria_requerida": 150,
+            "estado_inicial": "activo",
+            "recursos_actuales": ["Impresora_2"],
+            "recursos_necesarios": [],
+            "acciones_pendientes": [
+                {"tipo_accion": "escribir_archivo", "objetivo": "reporte.txt"}
+            ]
+        },
+        {
+            "pid": "P7",
+            "memoria_requerida": 800,
+            "estado_inicial": "activo",
+            "recursos_actuales": ["Base_Datos"],
+            "recursos_necesarios": [],
+            "acciones_pendientes": [
+                {"tipo_accion": "leer_archivo", "objetivo": "datos.csv"}
+            ]
+        }
+    ]
+}
