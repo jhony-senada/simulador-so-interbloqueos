@@ -1,6 +1,6 @@
 import json
 
-# ! DEPRECATED 
+# ! Deprecated
 
 class Proceso:
     def __init__(self, pid, memoria, estado, rec_actuales, rec_necesarios, acciones):

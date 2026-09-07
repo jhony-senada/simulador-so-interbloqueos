@@ -109,6 +109,6 @@ class MotorSimulador:
 
 
 if __name__ == "__main__":
-    motor = MotorSimulador("D:\Apuntes\Codigos\Proyecto\ejemplo2.json")  # noqa: W605
+    motor = MotorSimulador("D:\Apuntes\Codigos\Proyecto\ejemplo.json")  # noqa: W605
     if motor.preparar_sistema():
         motor.ejecutar_paso_a_paso(limite_ticks=5)

@@ -1,13 +1,13 @@
-# tester.py
 from constructor_casos import ContrictorEscenarios
 from detector import MóduloInterbloqueos
 
+# ! deprecated
 
 def ejecutar_prueba():
     print("--- INICIANDO TESTER MODULAR ---\n")
     
     # 1. Cargamos el escenario desde el archivo JSON[cite: 9, 10]
-    constructor = ContrictorEscenarios("D:\Apuntes\Codigos\Proyecto\ejemplo2.json")
+    constructor = ContrictorEscenarios("D:\Apuntes\Codigos\Proyecto\ejemplo2.json")  # noqa: W605
     constructor.cargar_datos()
     
     # 2. Inicializamos el sistema y extraemos los recursos
@@ -32,7 +32,7 @@ def ejecutar_prueba():
     if hay_bloqueo:
         print(f"\n[!] TEST COMPLETADO: Interbloqueo detectado en {procesos_afectados}")
     else:
-        print("\n[✓] TEST COMPLETADO: No se detectaron bloqueos.")
+        print("\n[:D] TEST COMPLETADO: No se detectaron bloqueos.")
 
 if __name__ == "__main__":
     ejecutar_prueba()

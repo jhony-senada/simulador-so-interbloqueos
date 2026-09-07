@@ -1,7 +1,8 @@
 {
     "nombre_escenario": "Escenario 3 - Prueba de Interbloqueo",
     "configuracion": {
-        "memoria_total_mb": 1024
+        "memoria_total_mb": 1024,
+        "permite_expropiacion": false
     },
     "recursos_exclusivos": [
         {"id": "Impresora_1"},
