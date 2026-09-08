@@ -1,4 +1,7 @@
 class TiradorDeParoInteligente:
+    def __init__(self, permite_expropiacion):
+        # Recibe la configuración estricta del JSON
+        self.permite_expropiacion = permite_expropiacion
     def resolver_interbloqueo(self, pids_bloqueados, lista_procesos_totales):
         print("\n>> [TIRADOR DE PARO] Analizando los procesos...")
         
@@ -16,7 +19,7 @@ class TiradorDeParoInteligente:
         recursos_recuperados = []
         
         # 3. El Sistema Decide Dinámicamente
-        if cantidad_recursos <= 1:
+        if self.permite_expropiacion and cantidad_recursos <= 1:
             # ESTRATEGIA: EXPROPIACIÓN TÁCTICA
             print(f"[*] Decisión del Sistema: EXPROPIAR RECURSOS. El proceso {victima.pid} perderá sus recursos pero seguirá vivo... por ahora...")
             recursos_recuperados = victima.recursos_actuales.copy()
@@ -26,6 +29,8 @@ class TiradorDeParoInteligente:
             victima.recursos_necesarios.extend(recursos_recuperados) # Tendrá que volver a pedirlos
             
         else:
+            if not self.permite_expropiacion:
+                print("[!] Regla estricta de retención activa (No Expropiación = True).")
             # ESTRATEGIA: TERMINACIÓN NUCLEAR
             print(f"[*] Decisión del Sistema: TERMINAR PROCESO. El proceso {victima.pid} es un cuello de botella y será destruido.")
             recursos_recuperados = victima.recursos_actuales.copy()

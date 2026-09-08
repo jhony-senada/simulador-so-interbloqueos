@@ -1,6 +1,7 @@
 import json
 
 
+# by Jhony-senada
 class Accion_pendiente:
     def __init__(self,tipo,objetivo):
         self.tipo=tipo
