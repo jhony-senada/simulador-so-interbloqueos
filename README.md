@@ -51,6 +51,6 @@ Los escenarios de simulación están configurados en formato JSON y deben coloca
 ## Autores (Equipo de Desarrollo)
 [Cabello Silva José Carlos / 333306]
 
-[Nombre de tu compañero / Matrícula]
+[Hernández López Luis Alberto / 304013]
 
 [Nombre de tu compañero / Matrícula]

@@ -284,6 +284,8 @@ class MotorSimulador:
         #Ejecuta solo un tick para el paso a paso
         self.reloj += 1
 
+        self.intentar_asignar_recursos_libres()
+        
         # Ejecuta procesos
         self.avanzar_procesos_activos()
 
