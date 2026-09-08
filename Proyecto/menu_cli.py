@@ -13,13 +13,15 @@ def mostrar_menu():
         print("="*20)
         opcion = input("seleccionar un opción (1 o 2): ")
         if opcion == '1':
-            ruta= input("\n ingresa el nombre o la ruta exacta del archivo JSON: \n")
+            ruta= input("\n ingresa el nombre JSON (ejemplo: ejemplo.json): \n")
+            directorio_actual = os.path.dirname(os.path.abspath(__file__))
+            ruta_segura = os.path.join(directorio_actual, ruta)
 
-            if not os.path.exists(ruta):
-                print(f"\n[Error] El archivo {ruta} no existe o la ruta es invalida.")
+            if not os.path.exists(ruta_segura):
+                print(f"\n[Error] El archivo {ruta_segura} no existe o la ruta es invalida.")
                 continue
-            print(f"\n[*] Iniciando entorno con {ruta}...")
-            motor = MotorSimulador(ruta)
+            print(f"\n[*] Iniciando entorno con {ruta_segura}...")
+            motor = MotorSimulador(ruta_segura)
             if motor.preparar_sistema():
                 motor.ejecutar_paso_a_paso(limite_ticks=6)
             else:

@@ -10,7 +10,7 @@ class MotorSimulador:
         self.ruta_escenario = ruta_escenario
         self.procesos = []
         self.detector = None
-        self.recuperador = TiradorDeParoInteligente()
+        self.recuperador = TiradorDeParoInteligente(False)
         self.reloj = 0
 
     def preparar_sistema(self):
@@ -126,6 +126,12 @@ class MotorSimulador:
         return hay_bloqueo
 
 if __name__ == "__main__":
-    motor = MotorSimulador("D:\Apuntes\Codigos\Proyecto\ejemplo.json")  # noqa: W605
+    import os
+    
+    # Ruta dinámica para el tester
+    directorio_actual = os.path.dirname(os.path.abspath(__file__))
+    ruta_json = os.path.join(directorio_actual, "ejemplo.json")
+    
+    motor = MotorSimulador(ruta_json)
     if motor.preparar_sistema():
         motor.ejecutar_paso_a_paso(limite_ticks=5)

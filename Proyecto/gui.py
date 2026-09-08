@@ -1,8 +1,13 @@
+import os
+
 import customtkinter as ctk
-from simulador import MotorSimulador # Clase main
+from simulador import MotorSimulador  # Clase main
 
 #inciaicar motor
-motor = MotorSimulador(r"C:\Users\Wicho\Desktop\Universidad\5° Semestre\Sistemas Operativos\proyecto_SO\simulador-so-interbloqueos\Proyecto\ejemplo.json")
+#realmente tenemos que arreglar el problema de que no lee las direcciones relativas
+direccion_actual=os.path.dirname(os.path.abspath(__file__))
+ruta_json = os.path.join(direccion_actual, "ejemplo.json")
+motor = MotorSimulador(ruta_json)
 motor.preparar_sistema()
 
 # Configurar ventana
