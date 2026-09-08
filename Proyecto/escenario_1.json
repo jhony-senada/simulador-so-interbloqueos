@@ -1,0 +1,36 @@
+{
+    "nombre_escenario": "Escenario 1 - Ejecución normal sin interbloqueo",
+    "configuracion": {
+        "memoria_total_mb": 2048,
+        "permite_expropiacion": false
+    },
+    "recursos_exclusivos": [
+        {"id": "Impresora_1"},
+        {"id": "Plotter_1"}
+    ],
+    "archivos_simulados": [
+        {"nombre": "log.txt", "estado": "disponible"}
+    ],
+    "procesos": [
+        {
+            "pid": "P1",
+            "memoria_requerida": 300,
+            "estado_inicial": "activo",
+            "recursos_actuales": [],
+            "recursos_necesarios": ["Impresora_1"],
+            "acciones_pendientes": [
+                {"tipo_accion": "solicitar_recurso", "objetivo": "Impresora_1"}
+            ]
+        },
+        {
+            "pid": "P2",
+            "memoria_requerida": 500,
+            "estado_inicial": "activo",
+            "recursos_actuales": [],
+            "recursos_necesarios": ["Plotter_1"],
+            "acciones_pendientes": [
+                {"tipo_accion": "solicitar_recurso", "objetivo": "Plotter_1"}
+            ]
+        }
+    ]
+}

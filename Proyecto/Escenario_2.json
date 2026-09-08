@@ -1,42 +1,35 @@
 {
-  "nombre_escenario": "Escenario 2 - Espera temporal",
-  "configuracion": {
-    "memoria_total_mb": 1024
-  },
-  "recursos_exclusivos": [
-    {"id": "Impresora_1"}
-  ],
-  "archivos_simulados": [],
-  "procesos": [
-    {
-      "pid": "P1",
-      "memoria_requerida": 200,
-      "estado_inicial": "activo",
-      "recursos_actuales": ["Impresora_1"],
-      "recursos_necesarios": [],
-      "acciones_pendientes": [
+    "nombre_escenario": "Escenario 2 - Espera temporal sin interbloqueo",
+    "configuracion": {
+        "memoria_total_mb": 1024,
+        "permite_expropiacion": false
+    },
+    "recursos_exclusivos": [
+        {"id": "Escaner_1"}
+    ],
+    "archivos_simulados": [
+        {"nombre": "imagen.png", "estado": "disponible"}
+    ],
+    "procesos": [
         {
-          "tipo_accion": "usar_cpu",
-          "objetivo": "tiempo_procesamiento"
+            "pid": "P1",
+            "memoria_requerida": 400,
+            "estado_inicial": "activo",
+            "recursos_actuales": ["Escaner_1"],
+            "recursos_necesarios": [],
+            "acciones_pendientes": [
+                {"tipo_accion": "leer_archivo", "objetivo": "imagen.png"}
+            ]
         },
         {
-          "tipo_accion": "liberar_recurso",
-          "objetivo": "Impresora_1"
+            "pid": "P2",
+            "memoria_requerida": 200,
+            "estado_inicial": "activo",
+            "recursos_actuales": [],
+            "recursos_necesarios": ["Escaner_1"],
+            "acciones_pendientes": [
+                {"tipo_accion": "solicitar_recurso", "objetivo": "Escaner_1"}
+            ]
         }
-      ]
-    },
-    {
-      "pid": "P2",
-      "memoria_requerida": 300,
-      "estado_inicial": "activo",
-      "recursos_actuales": [],
-      "recursos_necesarios": ["Impresora_1"],
-      "acciones_pendientes": [
-        {
-          "tipo_accion": "solicitar_recurso",
-          "objetivo": "Impresora_1"
-        }
-      ]
-    }
-  ]
+    ]
 }

@@ -1,0 +1,34 @@
+{
+    "nombre_escenario": "Escenario 4 - Prevención y Recuperación Táctica",
+    "configuracion": {
+        "memoria_total_mb": 1024,
+        "permite_expropiacion": true
+    },
+    "recursos_exclusivos": [
+        {"id": "GPU_1"},
+        {"id": "Placa_Audio"}
+    ],
+    "archivos_simulados": [],
+    "procesos": [
+        {
+            "pid": "P1",
+            "memoria_requerida": 300,
+            "estado_inicial": "activo",
+            "recursos_actuales": ["GPU_1"],
+            "recursos_necesarios": ["Placa_Audio"],
+            "acciones_pendientes": [
+                {"tipo_accion": "solicitar_recurso", "objetivo": "Placa_Audio"}
+            ]
+        },
+        {
+            "pid": "P2",
+            "memoria_requerida": 300,
+            "estado_inicial": "activo",
+            "recursos_actuales": ["Placa_Audio"],
+            "recursos_necesarios": ["GPU_1"],
+            "acciones_pendientes": [
+                {"tipo_accion": "solicitar_recurso", "objetivo": "GPU_1"}
+            ]
+        }
+    ]
+}

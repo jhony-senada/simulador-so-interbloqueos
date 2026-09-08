@@ -1,49 +1,77 @@
-22:32:51 | TICK: 0 | [INICIO] Arrancando simulación con escenario: d:\Apuntes\Codigos\Proyecto\ejemplo2.json
-22:32:51 | TICK: 0 | [MEMORIA] Memoria total configurada: 4096 MB
-22:32:51 | TICK: 0 | [PROCESO] P1 cargado y se le asignaron 200 MB.
-22:32:51 | TICK: 0 | [PROCESO] P2 cargado y se le asignaron 500 MB.
-22:32:51 | TICK: 0 | [PROCESO] P3 cargado y se le asignaron 1024 MB.
-22:32:51 | TICK: 0 | [PROCESO] P4 cargado y se le asignaron 300 MB.
-22:32:51 | TICK: 0 | [PROCESO] P5 cargado y se le asignaron 400 MB.
-22:32:51 | TICK: 0 | [PROCESO] P6 cargado y se le asignaron 150 MB.
-22:32:51 | TICK: 0 | [PROCESO] P7 cargado y se le asignaron 800 MB.
-22:32:51 | TICK: 1 | [SYSCALL] P6 ejecuta: escribir_archivo sobre reporte.txt
-22:32:51 | TICK: 1 | [TERMINACIÓN] P6 terminó exitosamente. Liberando 150 MB.
-22:32:51 | TICK: 1 | [RECURSOS] Recurso 'Impresora_2' reasignado a P1.
-22:32:51 | TICK: 1 | [ESTADO] P1 cambia a estado ACTIVO.
-22:32:51 | TICK: 1 | [SYSCALL] P7 ejecuta: leer_archivo sobre datos.csv
-22:32:51 | TICK: 1 | [TERMINACIÓN] P7 terminó exitosamente. Liberando 800 MB.
-22:32:53 | TICK: 1 | [INTERBLOQUEO] Detectado entre los procesos: ['P5', 'P2', 'P4', 'P3']
-22:32:53 | TICK: 1 | [RECUPERACIÓN] Estrategia aplicada. Recursos recuperados: ['Disco_Externo']
-22:32:53 | TICK: 1 | [RECURSOS] Recurso 'Disco_Externo' reasignado a P5.
-22:32:53 | TICK: 1 | [ESTADO] P5 cambia a estado ACTIVO.
-22:32:54 | TICK: 2 | [SYSCALL] P1 ejecuta: solicitar_recurso sobre Impresora_2
-22:32:54 | TICK: 2 | [TERMINACIÓN] P1 terminó exitosamente. Liberando 200 MB.
-22:32:54 | TICK: 2 | [SYSCALL] P5 ejecuta: solicitar_recurso sobre Disco_Externo
-22:32:54 | TICK: 2 | [TERMINACIÓN] P5 terminó exitosamente. Liberando 400 MB.
-22:32:54 | TICK: 2 | [RECURSOS] Recurso 'Plotter_1' reasignado a P4.
-22:32:54 | TICK: 2 | [ESTADO] P4 cambia a estado ACTIVO.
-22:32:54 | TICK: 3 | [SYSCALL] P4 ejecuta: solicitar_recurso sobre Plotter_1
-22:32:54 | TICK: 3 | [TERMINACIÓN] P4 terminó exitosamente. Liberando 300 MB.
-22:32:54 | TICK: 3 | [RECURSOS] Recurso 'Escaner_1' reasignado a P3.
-22:32:54 | TICK: 3 | [ESTADO] P3 cambia a estado ACTIVO.
-22:32:54 | TICK: 4 | [SYSCALL] P3 ejecuta: solicitar_recurso sobre Escaner_1
-22:32:54 | TICK: 4 | [TERMINACIÓN] P3 terminó exitosamente. Liberando 1024 MB.
-22:32:55 | TICK: 4 | [FIN] Simulación completada. No hay procesos pendientes.
-22:32:55 | TICK: --- MÉTRICAS FINALES DE LA SIMULACIÓN ---
-22:32:55 | TICK: Procesos Totales: 7 | Terminados OK: 6 | Terminados Forzosos: 1
-22:32:55 | TICK: Interbloqueos Detectados: 1 | Recursos Liberados: 1
-22:33:26 | TICK: 0 | [INICIO] Arrancando simulación con escenario: d:\Apuntes\Codigos\Proyecto\ejemplo.json
-22:33:26 | TICK: 0 | [MEMORIA] Memoria total configurada: 1024 MB
-22:33:26 | TICK: 0 | [PROCESO] P1 cargado y se le asignaron 200 MB.
-22:33:26 | TICK: 0 | [PROCESO] P2 cargado y se le asignaron 300 MB.
-22:33:29 | TICK: 1 | [INTERBLOQUEO] Detectado entre los procesos: ['P1', 'P2']
-22:33:29 | TICK: 1 | [RECUPERACIÓN] Estrategia aplicada. Recursos recuperados: ['Impresora_1']
-22:33:29 | TICK: 1 | [RECURSOS] Recurso 'Impresora_1' reasignado a P2.
-22:33:29 | TICK: 1 | [ESTADO] P2 cambia a estado ACTIVO.
-22:33:32 | TICK: 2 | [SYSCALL] P2 ejecuta: leer_archivo sobre reporte.txt
-22:33:32 | TICK: 2 | [TERMINACIÓN] P2 terminó exitosamente. Liberando 300 MB.
-22:33:33 | TICK: 2 | [FIN] Simulación completada. No hay procesos pendientes.
-22:33:33 | TICK: --- MÉTRICAS FINALES DE LA SIMULACIÓN ---
-22:33:33 | TICK: Procesos Totales: 2 | Terminados OK: 1 | Terminados Forzosos: 1
-22:33:33 | TICK: Interbloqueos Detectados: 1 | Recursos Liberados: 1
+23:30:41 | TICK: 0 | [INICIO] Arrancando simulación con escenario: d:\Apuntes\Codigos\Proyecto\escenario_1.json
+23:30:41 | TICK: 0 | [MEMORIA] Memoria total configurada: 2048 MB
+23:30:41 | TICK: 0 | [PROCESO] P1 cargado y se le asignaron 300 MB.
+23:30:41 | TICK: 0 | [PROCESO] P2 cargado y se le asignaron 500 MB.
+23:30:47 | TICK: --- MÉTRICAS FINALES DE LA SIMULACIÓN ---
+23:30:47 | TICK: Procesos Totales: 2 | Terminados OK: 0 | Terminados Forzosos: 0
+23:30:47 | TICK: Interbloqueos Detectados: 0 | Recursos Liberados: 0
+23:30:59 | TICK: 0 | [INICIO] Arrancando simulación con escenario: d:\Apuntes\Codigos\Proyecto\escenario_2.json
+23:30:59 | TICK: 0 | [MEMORIA] Memoria total configurada: 1024 MB
+23:30:59 | TICK: 0 | [PROCESO] P1 cargado y se le asignaron 400 MB.
+23:30:59 | TICK: 0 | [PROCESO] P2 cargado y se le asignaron 200 MB.
+23:30:59 | TICK: 1 | [SYSCALL] P1 ejecuta: leer_archivo sobre imagen.png
+23:30:59 | TICK: 1 | [TERMINACIÓN] P1 terminó exitosamente. Liberando 400 MB.
+23:30:59 | TICK: 1 | [RECURSOS] Recurso 'Escaner_1' reasignado a P2.
+23:30:59 | TICK: 1 | [ESTADO] P2 cambia a estado ACTIVO.
+23:30:59 | TICK: 1 | [SYSCALL] P2 ejecuta: solicitar_recurso sobre Escaner_1
+23:30:59 | TICK: 1 | [TERMINACIÓN] P2 terminó exitosamente. Liberando 200 MB.
+23:30:59 | TICK: 1 | [FIN] Simulación completada. No hay procesos pendientes.
+23:30:59 | TICK: --- MÉTRICAS FINALES DE LA SIMULACIÓN ---
+23:30:59 | TICK: Procesos Totales: 2 | Terminados OK: 2 | Terminados Forzosos: 0
+23:30:59 | TICK: Interbloqueos Detectados: 0 | Recursos Liberados: 0
+23:31:21 | TICK: 0 | [INICIO] Arrancando simulación con escenario: d:\Apuntes\Codigos\Proyecto\escenario_3.json
+23:31:21 | TICK: 0 | [MEMORIA] Memoria total configurada: 1024 MB
+23:31:21 | TICK: 0 | [PROCESO] P1 cargado y se le asignaron 200 MB.
+23:31:21 | TICK: 0 | [PROCESO] P2 cargado y se le asignaron 300 MB.
+23:31:25 | TICK: 1 | [INTERBLOQUEO] Detectado entre los procesos: ['P2', 'P1']
+23:31:25 | TICK: 1 | [RECUPERACIÓN] Estrategia aplicada. Recursos recuperados: ['Impresora_1']
+23:31:25 | TICK: 1 | [RECURSOS] Recurso 'Impresora_1' reasignado a P2.
+23:31:25 | TICK: 1 | [ESTADO] P2 cambia a estado ACTIVO.
+23:31:25 | TICK: 2 | [SYSCALL] P2 ejecuta: leer_archivo sobre reporte.txt
+23:31:25 | TICK: 2 | [TERMINACIÓN] P2 terminó exitosamente. Liberando 300 MB.
+23:31:26 | TICK: 2 | [FIN] Simulación completada. No hay procesos pendientes.
+23:31:26 | TICK: --- MÉTRICAS FINALES DE LA SIMULACIÓN ---
+23:31:26 | TICK: Procesos Totales: 2 | Terminados OK: 1 | Terminados Forzosos: 1
+23:31:26 | TICK: Interbloqueos Detectados: 1 | Recursos Liberados: 1
+23:31:37 | TICK: 0 | [INICIO] Arrancando simulación con escenario: d:\Apuntes\Codigos\Proyecto\escenario_4.json
+23:31:37 | TICK: 0 | [MEMORIA] Memoria total configurada: 1024 MB
+23:31:37 | TICK: 0 | [PROCESO] P1 cargado y se le asignaron 300 MB.
+23:31:37 | TICK: 0 | [PROCESO] P2 cargado y se le asignaron 300 MB.
+23:32:16 | TICK: --- MÉTRICAS FINALES DE LA SIMULACIÓN ---
+23:32:16 | TICK: Procesos Totales: 2 | Terminados OK: 0 | Terminados Forzosos: 0
+23:32:16 | TICK: Interbloqueos Detectados: 0 | Recursos Liberados: 0
+23:32:23 | TICK: 0 | [INICIO] Arrancando simulación con escenario: d:\Apuntes\Codigos\Proyecto\escenario_5.json
+23:32:23 | TICK: 0 | [MEMORIA] Memoria total configurada: 4096 MB
+23:32:23 | TICK: 0 | [PROCESO] P1 cargado y se le asignaron 200 MB.
+23:32:23 | TICK: 0 | [PROCESO] P2 cargado y se le asignaron 500 MB.
+23:32:23 | TICK: 0 | [PROCESO] P3 cargado y se le asignaron 1024 MB.
+23:32:23 | TICK: 0 | [PROCESO] P4 cargado y se le asignaron 300 MB.
+23:32:23 | TICK: 0 | [PROCESO] P5 cargado y se le asignaron 400 MB.
+23:32:23 | TICK: 0 | [PROCESO] P6 cargado y se le asignaron 150 MB.
+23:32:23 | TICK: 0 | [PROCESO] P7 cargado y se le asignaron 800 MB.
+23:32:23 | TICK: 1 | [SYSCALL] P6 ejecuta: escribir_archivo sobre reporte.txt
+23:32:23 | TICK: 1 | [TERMINACIÓN] P6 terminó exitosamente. Liberando 150 MB.
+23:32:23 | TICK: 1 | [RECURSOS] Recurso 'Impresora_2' reasignado a P1.
+23:32:23 | TICK: 1 | [ESTADO] P1 cambia a estado ACTIVO.
+23:32:23 | TICK: 1 | [SYSCALL] P7 ejecuta: leer_archivo sobre datos.csv
+23:32:23 | TICK: 1 | [TERMINACIÓN] P7 terminó exitosamente. Liberando 800 MB.
+23:32:29 | TICK: 1 | [INTERBLOQUEO] Detectado entre los procesos: ['P4', 'P5', 'P2', 'P3']
+23:32:29 | TICK: 1 | [RECUPERACIÓN] Estrategia aplicada. Recursos recuperados: ['Disco_Externo']
+23:32:29 | TICK: 1 | [RECURSOS] Recurso 'Disco_Externo' reasignado a P5.
+23:32:29 | TICK: 1 | [ESTADO] P5 cambia a estado ACTIVO.
+23:32:29 | TICK: 2 | [SYSCALL] P1 ejecuta: solicitar_recurso sobre Impresora_2
+23:32:29 | TICK: 2 | [TERMINACIÓN] P1 terminó exitosamente. Liberando 200 MB.
+23:32:29 | TICK: 2 | [SYSCALL] P5 ejecuta: solicitar_recurso sobre Disco_Externo
+23:32:29 | TICK: 2 | [TERMINACIÓN] P5 terminó exitosamente. Liberando 400 MB.
+23:32:29 | TICK: 2 | [RECURSOS] Recurso 'Plotter_1' reasignado a P4.
+23:32:29 | TICK: 2 | [ESTADO] P4 cambia a estado ACTIVO.
+23:32:29 | TICK: 3 | [SYSCALL] P4 ejecuta: solicitar_recurso sobre Plotter_1
+23:32:29 | TICK: 3 | [TERMINACIÓN] P4 terminó exitosamente. Liberando 300 MB.
+23:32:29 | TICK: 3 | [RECURSOS] Recurso 'Escaner_1' reasignado a P3.
+23:32:29 | TICK: 3 | [ESTADO] P3 cambia a estado ACTIVO.
+23:32:30 | TICK: 4 | [SYSCALL] P3 ejecuta: solicitar_recurso sobre Escaner_1
+23:32:30 | TICK: 4 | [TERMINACIÓN] P3 terminó exitosamente. Liberando 1024 MB.
+23:32:30 | TICK: 4 | [FIN] Simulación completada. No hay procesos pendientes.
+23:32:30 | TICK: --- MÉTRICAS FINALES DE LA SIMULACIÓN ---
+23:32:30 | TICK: Procesos Totales: 7 | Terminados OK: 6 | Terminados Forzosos: 1
+23:32:30 | TICK: Interbloqueos Detectados: 1 | Recursos Liberados: 1
