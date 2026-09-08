@@ -18,6 +18,7 @@ class MotorSimulador:
         self.memoria_total = 0
         self.memoria_disponible = 0
         self.uso_maximo_memoria = 0
+        self.recursos_libres = [] # NUEVO: Inventario del sistema
         self.archivos = {} # Nuevo gestor de archivos
         self.configurar_logger()
         self.metricas = {
@@ -60,9 +61,10 @@ class MotorSimulador:
         self.logger.info(f"0 | [MEMORIA] Memoria total configurada: {self.memoria_total} MB")
 
         ids_exclusivos = [r['id'] for r in datos_sistema[1]]
+        self.recursos_libres = ids_exclusivos.copy() # Llenamos el inventario
         procesos_brutos = constructor.inicializar_proceso()
         # Validar estado inicial: Si necesitan recursos, inician esperando
-        print("\n>> [GESTOR DE MEMORIA] Asignando memoria a procesos...")
+        print("\n>> [GESTOR DE MEMORIA] Asignando...")
         for p in procesos_brutos:
             if p.memoria <= self.memoria_disponible:
                 self.memoria_disponible -= p.memoria
@@ -73,7 +75,11 @@ class MotorSimulador:
                 uso_actual = self.memoria_total - self.memoria_disponible
                 if uso_actual > self.uso_maximo_memoria:  # noqa: PLR1730
                     self.uso_maximo_memoria = uso_actual
-                    
+                # Descontamos del inventario los recursos que ya trae este proceso
+                for r in p.recursos_actuales:
+                    if r in self.recursos_libres:
+                        self.recursos_libres.remove(r)
+
                 if len(p.recursos_necesarios) > 0:
                     p.estado_inicial = "esperando"
             else:
@@ -87,31 +93,42 @@ class MotorSimulador:
                 self.archivos[arch['nombre']] = arch['estado']
         self.detector = MóduloInterbloqueos(ids_exclusivos, permite_expropiar)
         return True
+    
+    def intentar_asignar_recursos_libres(self):
+        """Revisa el inventario y entrega los recursos a quienes los esperan"""
+        if not self.recursos_libres: return
+        
+        procesos_ordenados = sorted(self.procesos, key=lambda x: len(x.recursos_necesarios))
+        for p in procesos_ordenados:
+            if p.estado_inicial == "esperando":
+                recursos_entregados = []
+                for rec_necesitado in p.recursos_necesarios:
+                    if rec_necesitado in self.recursos_libres:
+                        p.recursos_actuales.append(rec_necesitado)
+                        recursos_entregados.append(rec_necesitado)
+                        print(f" [+] Recurso '{rec_necesitado}' extraído del pool y asignado a {p.pid}.")
+                        self.logger.info(f"{self.reloj} | [ASIGNACIÓN] '{rec_necesitado}' asignado a {p.pid}.")
+                
+                # Borramos los recursos entregados de la lista de necesidades y del pool
+                for r in recursos_entregados:
+                    p.recursos_necesarios.remove(r)
+                    self.recursos_libres.remove(r)
+                    
+                if len(p.recursos_necesarios) == 0:
+                    p.estado_inicial = "activo"
+                    print(f" [^] {p.pid} tiene todos sus recursos. Despierta a estado 'activo'.")
+                    self.logger.info(f"{self.reloj} | [ESTADO] {p.pid} cambia a estado ACTIVO.")
 
     def reasignar_recursos(self, recursos_liberados):
+        """Recibe recursos soltados y llama al repartidor"""
         if not recursos_liberados: return
-        
-        print("\n>> [GESTOR DE RECURSOS] Reasignando recursos recuperados...")
-        for recurso in recursos_liberados:
-            asignado = False
-            # ORDENAMOS: Prioridad a los procesos que necesitan menos recursos para terminar
-            procesos_ordenados = sorted(self.procesos, key=lambda x: len(x.recursos_necesarios))
-            
-            for p in procesos_ordenados:
-                if p.estado_inicial != "terminado_forzosamente" and recurso in p.recursos_necesarios:
-                    p.recursos_necesarios.remove(recurso)
-                    p.recursos_actuales.append(recurso)
-                    print(f" [+] Recurso '{recurso}' asignado a {p.pid}.")
-                    self.logger.info(f"{self.reloj} | [RECURSOS] Recurso '{recurso}' reasignado a {p.pid}.")
-                    
-                    if len(p.recursos_necesarios) == 0:
-                        p.estado_inicial = "activo"
-                        print(f" [^] {p.pid} tiene todos sus recursos. Despierta a estado 'activo'.")
-                        self.logger.info(f"{self.reloj} | [ESTADO] {p.pid} cambia a estado ACTIVO.")
-                    asignado = True
-                    break 
-            if not asignado:
-                print(f" [-] Recurso '{recurso}' queda libre en el sistema.")
+        print(f"\n>> [GESTOR DE RECURSOS] Reintegrando {recursos_liberados} al pool general...")
+        for r in recursos_liberados:
+            if r not in self.recursos_libres:
+                self.recursos_libres.append(r)
+                
+        # Una vez en el inventario, intentamos repartirlos
+        self.intentar_asignar_recursos_libres()
 
     def avanzar_procesos_activos(self):
         print("\n>> [CPU] Ejecutando procesos activos...")
@@ -186,7 +203,7 @@ class MotorSimulador:
 
             self.reloj += 1
             print("\n" + "="*40 + f"\n   [TICK DE RELOJ: {self.reloj}]\n" + "="*40)
-            
+            self.intentar_asignar_recursos_libres()
             self.avanzar_procesos_activos()
             
             hay_bloqueo, pids_afectados = self.detector.detectar_y_analizar(self.procesos)
