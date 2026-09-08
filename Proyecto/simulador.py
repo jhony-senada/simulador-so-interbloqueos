@@ -107,6 +107,23 @@ class MotorSimulador:
         print(f" -> Esperando: {esperando if esperando else 'Ninguno'}")
         print(f" -> Terminados: {terminados if terminados else 'Ninguno'}")
 
+    def ejecutar_un_paso_gui(self):
+        """Ejecuta un solo tick para el modo paso a paso de la GUI"""
+        #Ejecuta solo un tick para el paso a paso
+        self.reloj += 1
+
+        # Ejecuta procesos
+        self.avanzar_procesos_activos()
+
+        # Detecta interbloqueos
+        hay_bloqueo, pids_afectados = self.detector.detectar_y_analizar(self.procesos)
+
+        # Recupera
+        if hay_bloqueo:
+            recursos_salvados = self.recuperador.resolver_interbloqueo(pids_afectados, self.procesos)
+            self.reasignar_recursos(recursos_salvados)
+
+        return hay_bloqueo
 
 if __name__ == "__main__":
     motor = MotorSimulador("D:\Apuntes\Codigos\Proyecto\ejemplo.json")  # noqa: W605
